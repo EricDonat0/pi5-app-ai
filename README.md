@@ -3,11 +3,11 @@
 Repositório oficial do Projeto Integrador 5 (PI5). O objetivo principal deste projeto é desenvolver uma Inteligência Artificial capaz de aprender e jogar um jogo de forma totalmente autônoma, integrando conceitos de IA com uma interface web funcional.
 
 ## 👥 Equipe de Desenvolvimento
-* [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ericdonato/) **[Eric Donato](https://www.linkedin.com/in/ericdonato/)**
-* [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/paulamorin/) **[Paula Martins](https://www.linkedin.com/in/paulamorin/)**
-* [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matheus-henrique-b04a08253/) **[Matheus Henrique](https://www.linkedin.com/in/matheus-henrique-b04a08253/)**
+* **[Eric Donato](https://www.linkedin.com/in/ericdonato/)**
+* **[Paula Martins](https://www.linkedin.com/in/paulamorin/)**
+* **[Matheus Henrique](https://www.linkedin.com/in/matheus-henrique-b04a08253/)**
 
-**Orientador:** [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/guirey/) **[Prof. Guilherme Rey](https://www.linkedin.com/in/guirey/)**
+**Orientador:** **[Prof. Guilherme Rey](https://www.linkedin.com/in/guirey/)**
 
 ## 🚀 Tecnologias Utilizadas
 * **Frontend:** React, Vite, JavaScript (ESNext)
