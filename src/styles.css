@@ -1,8 +1,220 @@
-body {
-   
+/* =========================================
+   1. CONTAINERS E PAINÉIS DE INFORMAÇÃO
+   ========================================= */
+
+.status-container {
+    margin: 20px 0;
+    text-align: center;
+    /* Centraliza o texto de carregamento/erro */
 }
 
-h1 {
+.error-text {
+    color: red;
+}
+
+/* Wrapper para centralizar o jogo todo na tela */
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.game-info-panel {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #dfe4ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    /* Mantém o painel com a mesma largura do tabuleiro */
+    box-sizing: border-box;
+}
+
+.game-info-panel p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+/* =========================================
+   2. LAYOUT DO TABULEIRO (CHESSBOARD) - CORRIGIDO
+   ========================================= */
+
+/* Container que agrupa as coordenadas e o tabuleiro */
+.board-container {
+    display: inline-block;
+    /* Importante para o alinhamento inline */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Linha principal: Números + Grid */
+.chessboard-main-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* Alinha o grid no topo dos números */
+}
+
+/* Coluna de Números (5 a 1) */
+.row-coordinates {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Gap idêntico ao do grid */
+    margin-right: 12px;
+    /* Espaço entre números e grid */
+}
+
+/* Estilo de cada número */
+.coord-y {
+    height: 70px;
+    /* Mesma altura da célula */
+    width: 20px;
+    /* Largura fixa para os números */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #a4b0be;
+}
+
+/* Linha de Letras (A a E) */
+.col-coordinates {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    /* Gap idêntico ao do grid */
+    margin-top: 12px;
+    /* Espaço entre grid e letras */
+    padding-left: 32px;
+    /* Compensa a largura da coluna de números (20px + 12px) */
+}
+
+/* Estilo de cada letra */
+.coord-x {
+    width: 70px;
+    /* Mesma largura da célula */
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #a4b0be;
+}
+
+/* =========================================
+   3. GRID E CÉLULAS BASE
+   ========================================= */
+
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 70px);
+    gap: 8px;
+    margin-top: 0;
+    /* Removido o marginTop que quebrava o alinhamento */
+}
+
+.board-cell {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 6px;
     color: #000;
-    font-family: Arial, sans-serif;
+    border: 2px solid #dfe4ea;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   4. CONTEÚDO DA CÉLULA (TEXTOS E PEÇAS)
+   ========================================= */
+
+.level-text {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.professor-badge {
+    margin-top: 4px;
+    padding: 3px 5px;
+    color: white;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* =========================================
+   5. CORES DINÂMICAS (NÍVEIS E TIMES) - NOVAS CORES 1 e 2
+   ========================================= */
+
+.level-0 {
+    background-color: #f1f1f1;
+}
+
+/* NOVA COR LVL 1: Mais clara (#d1e9ff) */
+.level-1 {
+    background-color: #d1e9ff;
+}
+
+/* NOVA COR LVL 2: Mais escura/saturada (#63c5e6) */
+.level-2 {
+    background-color: #63c5e6;
+}
+
+.level-3 {
+    background-color: gold;
+    border-color: #ff9f43;
+}
+
+.level-4 {
+    background-color: #333;
+    color: #fff;
+}
+
+.team-1 {
+    background-color: #007bff;
+}
+
+.team-2 {
+    background-color: #ff006e;
+}
+
+/* =========================================
+   6. ESTADOS DE DESTAQUE E ANIMAÇÕES
+   ========================================= */
+
+.board-cell:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.board-cell:hover .professor-badge {
+    transform: scale(1.15);
+}
+
+.highlight-move {
+    border-color: #00b894 !important;
+    box-shadow: 0 0 12px rgba(0, 184, 148, 0.6) !important;
+    transform: translateY(-2px);
+}
+
+.highlight-mentor {
+    border-color: #a29bfe !important;
+    box-shadow: 0 0 12px rgba(162, 155, 254, 0.6) !important;
 }
