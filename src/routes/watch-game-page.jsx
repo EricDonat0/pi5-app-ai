@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export function WatchGamePage() {
-    const { id } = useParams();
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(false);
+export function WatchListPage() {
+    const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    const rows = ["5", "4", "3", "2", "1"];
-    const cols = ["A", "B", "C", "D", "E"];
-
-    async function fetchGame() {
+    async function fetchGamesList() {
+        setLoading(true);
         setError(false);
-
-        // Removemos o setLoading(true) daqui para evitar o flickering
         try {
             const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
 
             const response = await fetch(
-                `https://pi5-api-production.up.railway.app/api/v1/games/${id}`,
+                "https://pi5-api-production.up.railway.app/api/v1/games?page=1&page_size=20",
                 {
                     method: "GET",
                     headers: {
@@ -29,115 +24,70 @@ export function WatchGamePage() {
             );
 
             if (!response.ok) {
-                if (response.status === 401) throw new Error("Erro 401: Token inválido.");
-                if (response.status === 404) throw new Error("Erro 404: Jogo não encontrado.");
-                throw new Error("Erro ao buscar estado do jogo");
+                throw new Error("Erro ao buscar a lista de partidas");
             }
 
-            const game = await response.json();
-            setData(game);
+            const data = await response.json();
+            setGames(data.items || []);
         } catch (err) {
             console.error(err);
-            // Só exibe erro se ainda não tivermos dados na tela
-            if (!data) setError(true);
+            setError(true);
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        if (!id) return;
-
-        // Primeira busca imediata
-        fetchGame();
-
-        // Loop de atualização a cada 2 segundos
-        const intervalId = setInterval(() => {
-            fetchGame();
-        }, 2000);
-
-        // Limpeza do intervalo ao desmontar o componente
-        return () => clearInterval(intervalId);
-    }, [id]);
+        fetchGamesList();
+    }, []);
 
     return (
-        <div style={{ padding: "0 20px" }}>
-            <h1 style={{ textAlign: "center", marginTop: "20px" }}>Assistindo Jogo #{id}</h1>
+        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px 20px", textAlign: "center" }}>
+            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida 📺</h1>
 
-            <div style={{ textAlign: "center", marginBottom: "20px" }}>
-                <Link to="/watch" style={{ textDecoration: "none", fontWeight: "bold" }}>&lt; Voltar para a lista</Link>
+            <p style={{ color: "#636e72", marginBottom: "30px" }}>
+                Lista das últimas partidas geradas no servidor.
+            </p>
+
+            <button
+                onClick={fetchGamesList}
+                style={{ marginBottom: "20px", padding: "10px 20px", cursor: "pointer", borderRadius: "8px", border: "1px solid #ccc" }}
+            >
+                🔄 Atualizar Lista
+            </button>
+
+            {loading && <p>Carregando partidas...</p>}
+            {error && <p className="error-text">Erro ao carregar as partidas. Verifique seu token.</p>}
+
+            {!loading && !error && games.length === 0 && (
+                <p>Nenhuma partida encontrada.</p>
+            )}
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                {games.map((game) => (
+                    <div
+                        key={game.id}
+                        className="game-card" // NOVA CLASSE AQUI
+                    >
+                        <div className="game-card-content"> {/* NOVA CLASSE AQUI */}
+                            <h3>
+                                {game.turing_player?.group_name || "Bot 1"} vs {game.lovelace_player?.group_name || "Bot 2"}
+                            </h3>
+                            <p>
+                                Status: <strong>{game.status}</strong> | Turno: {game.current_turn_number}
+                            </p>
+                        </div>
+
+                        <Link
+                            to={`/watch/${game.id}`}
+                            className="cta-button"
+                            style={{ margin: 0, padding: "10px 20px", fontSize: "1rem" }}
+                        >
+                            ▶️ Assistir
+                        </Link>
+                    </div>
+                ))}
             </div>
-
-            {/* A mensagem de carregamento só aparece na primeira carga */}
-            {loading && !data && (
-                <div className="status-container">
-                    <span>Iniciando conexão com a arena...</span>
-                </div>
-            )}
-
-            {error && (
-                <div className="status-container">
-                    <span className="error-text">Erro ao carregar os dados da partida.</span>
-                </div>
-            )}
-
-            {data && data.board && (
-                <div className="game-wrapper">
-
-                    <div className="game-info-panel">
-                        <div><strong>Turno:</strong> {data.current_turn_number}</div>
-                        <div><strong>Status:</strong> {data.status}</div>
-                        <div>
-                            <strong>Fase:</strong> {data.current_turn_phase === "setup_placement" ? "Setup" : "Batalha"}
-                        </div>
-                    </div>
-
-                    <div className="board-container">
-                        <div className="chessboard-main-row">
-                            <div className="row-coordinates">
-                                {rows.map(num => (
-                                    <div key={num} className="coord-y">{num}</div>
-                                ))}
-                            </div>
-
-                            <div className="board-grid">
-                                {data.board.map((row, rowIndex) =>
-                                    row.map((cell, colIndex) => {
-                                        const isTeam1 = cell.professor === "CLARO" || cell.professor === "REY";
-                                        const teamClass = isTeam1 ? "team-1" : "team-2";
-
-                                        return (
-                                            <div
-                                                key={`${rowIndex}-${colIndex}`}
-                                                className={`board-cell level-${cell.level}`}
-                                            >
-                                                <span className="level-text">Lvl {cell.level}</span>
-                                                {cell.professor && (
-                                                    <div className={`professor-badge ${teamClass}`}>
-                                                        {cell.professor}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="col-coordinates">
-                            {cols.map(letra => (
-                                <div key={letra} className="coord-x">{letra}</div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {data.status === "FINISHED" && (
-                        <div style={{ marginTop: "20px", padding: "15px", background: "#fd79a8", color: "white", borderRadius: "10px", fontWeight: "bold", textAlign: "center" }}>
-                            🏆 Partida Finalizada!
-                        </div>
-                    )}
-                </div>
-            )}
         </div>
     );
 }
