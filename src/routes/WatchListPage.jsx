@@ -9,6 +9,7 @@ export function WatchListPage() {
 
     const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
 
+    // Busca a lista de partidas
     async function fetchGamesList() {
         setLoading(true);
         setError(false);
@@ -29,16 +30,25 @@ export function WatchListPage() {
             const data = await response.json();
             setGames(data.items || []);
         } catch (err) {
-            console.error(err);
+            console.error("Erro ao buscar lista:", err);
             setError(true);
         } finally {
             setLoading(false);
         }
     }
 
+    // Cria uma nova partida com os campos que a API exigiu
     async function createNewGame() {
         setCreating(true);
         try {
+            const payload = {
+                player_id: 21,        // Mudado de player_1_id para player_id
+                team_slot: 1,         // Novo campo exigido pela API
+                vs_random_bot: true
+            };
+
+            console.log("Tentando criar com:", payload);
+
             const response = await fetch("https://pi5-api-production.up.railway.app/api/v1/games", {
                 method: "POST",
                 headers: {
@@ -46,20 +56,30 @@ export function WatchListPage() {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${MEU_TOKEN}`
                 },
-                body: JSON.stringify({
-                    player_1_id: 21,
-                    vs_random_bot: true,
-                    ai_player_move_endpoint: null
-                })
+                body: JSON.stringify(payload)
             });
 
             if (response.ok) {
                 fetchGamesList();
             } else {
-                alert("Erro ao criar nova partida.");
+                const errorData = await response.json();
+                console.log("Erro completo da API:", errorData);
+
+                let errorMessage = "Erro desconhecido";
+                if (typeof errorData.detail === "string") {
+                    errorMessage = errorData.detail;
+                } else if (Array.isArray(errorData.detail)) {
+                    errorMessage = errorData.detail.map(err => {
+                        const campo = err.loc ? err.loc[err.loc.length - 1] : "campo";
+                        return `${campo}: ${err.msg}`;
+                    }).join("\n");
+                }
+
+                alert(`Erro ao criar partida:\n${errorMessage}`);
             }
         } catch (err) {
-            console.error("Erro ao criar jogo:", err);
+            console.error("Erro na requisição:", err);
+            alert("Erro de conexão ao tentar criar a partida.");
         } finally {
             setCreating(false);
         }
@@ -96,7 +116,12 @@ export function WatchListPage() {
             </div>
 
             {loading && games.length === 0 && <p>A carregar partidas...</p>}
-            {error && <p className="error-text">Erro ao carregar as partidas. Verifique o seu token.</p>}
+
+            {error && (
+                <p className="error-text">
+                    Erro ao carregar as partidas. Verifique se o seu token ainda é válido.
+                </p>
+            )}
 
             {!loading && !error && games.length === 0 && (
                 <p>Nenhuma partida encontrada.</p>
