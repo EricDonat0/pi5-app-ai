@@ -10,7 +10,6 @@ export function WatchListPage() {
         setLoading(true);
         setError(false);
         try {
-            // Seu token do Grupo Palerma
             const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
 
             const response = await fetch(
@@ -29,7 +28,6 @@ export function WatchListPage() {
             }
 
             const data = await response.json();
-            // A API retorna um objeto com "items" contendo o array de jogos
             setGames(data.items || []);
         } catch (err) {
             console.error(err);
@@ -45,7 +43,7 @@ export function WatchListPage() {
 
     return (
         <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px 20px", textAlign: "center" }}>
-            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida</h1>
+            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida 📺</h1>
 
             <p style={{ color: "#636e72", marginBottom: "30px" }}>
                 Lista das últimas partidas geradas no servidor.
@@ -69,21 +67,13 @@ export function WatchListPage() {
                 {games.map((game) => (
                     <div
                         key={game.id}
-                        style={{
-                            background: "#f8f9fa",
-                            padding: "20px",
-                            borderRadius: "12px",
-                            border: "1px solid #dfe4ea",
-                            display: "flex",
-                            justifyContent: "space-between", /* CORRIGIDO AQUI! */
-                            alignItems: "center"
-                        }}
+                        className="game-card"
                     >
-                        <div style={{ textAlign: "left" }}>
-                            <h3 style={{ margin: "0 0 5px 0", color: "#2d3436" }}>
+                        <div className="game-card-content">
+                            <h3>
                                 {game.turing_player?.group_name || "Bot 1"} vs {game.lovelace_player?.group_name || "Bot 2"}
                             </h3>
-                            <p style={{ margin: 0, fontSize: "14px", color: "#636e72" }}>
+                            <p>
                                 Status: <strong>{game.status}</strong> | Turno: {game.current_turn_number}
                             </p>
                         </div>
@@ -98,6 +88,6 @@ export function WatchListPage() {
                     </div>
                 ))}
             </div>
-        </div >
+        </div>
     );
 }

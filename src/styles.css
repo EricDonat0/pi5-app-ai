@@ -585,6 +585,63 @@ body,
 }
 
 /* =========================================
+   ESTILOS DOS CARDS DA LISTA DE PARTIDAS (/watch)
+   ========================================= */
+
+/* Estilo Base (Modo Claro) */
+.game-card {
+    background-color: #ffffff; /* Fundo branco no claro */
+    padding: 20px; 
+    border-radius: 12px; 
+    border: 1px solid #dfe4ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra suave */
+}
+
+.game-card:hover {
+    transform: translateY(-2px); /* Efeito de flutuar no hover */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.game-card-content {
+    text-align: left;
+}
+
+.game-card h3 {
+    margin: 0 0 5px 0;
+    color: #2d3436; /* Letra escura no claro */
+    font-size: 1.2rem;
+}
+
+.game-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #636e72; /* Subtítulo cinza no claro */
+}
+
+/* ---- Estilo para MODO ESCURO (.dark-mode) ---- */
+.dark-mode .game-card {
+    background-color: #2d3436; /* Fundo escuro do card no escuro */
+    border-color: #444; /* Borda mais discreta */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.dark-mode .game-card:hover {
+    border-color: #fd79a8; /* Borda fica rosa neon no hover */
+}
+
+.dark-mode .game-card h3 {
+    color: #f1f2f6; /* Título FICA BRANCO no escuro */
+}
+
+.dark-mode .game-card p {
+    color: #b2bec3; /* Subtítulo fica cinza claro no escuro */
+}
+
+/* =========================================
    10. RESPONSIVIDADE (CELULARES E TABLETS)
    ========================================= */
 
