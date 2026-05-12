@@ -41,3 +41,5 @@ O desenvolvimento da aplicação e da IA está sendo guiado pelos seguintes mód
 
 5. O projeto estará rodando no seu navegador em:
     http://localhost:5000
+
+6. Ou abra o projeto em https://pi5-app-ai.vercel.app/
