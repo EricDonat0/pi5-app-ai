@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route} from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import { useState } from "react";
 import { AppLayout } from "./app-layout";
 import { HomePage } from "@/routes/home-page";
 import { WatchListPage } from "@/routes/watch-page";
 import { WatchGamePage } from "@/routes/watch-game-page";
 
-export function App () {
+export function App() {
     return (
         <BrowserRouter>
             <AppLayout>

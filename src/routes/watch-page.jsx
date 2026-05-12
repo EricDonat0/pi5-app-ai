@@ -56,8 +56,8 @@ export function WatchListPage() {
                 Atualizar Lista
             </button>
 
-            {loading && <p>Carregando partidas...</p>}
-            {error && <p className="error-text">Erro ao carregar as partidas. Verifique seu token.</p>}
+            {loading && <p>A carregar partidas...</p>}
+            {error && <p className="error-text">Erro ao carregar as partidas. Verifique o seu token.</p>}
 
             {!loading && !error && games.length === 0 && (
                 <p>Nenhuma partida encontrada.</p>
@@ -74,7 +74,17 @@ export function WatchListPage() {
                                 {game.turing_player?.group_name || "Bot 1"} vs {game.lovelace_player?.group_name || "Bot 2"}
                             </h3>
                             <p>
-                                Status: <strong>{game.status}</strong> | Turno: {game.current_turn_number}
+                                {game.status === "FINISHED" ? (
+                                    <span>
+                                        Vencedor: <strong>
+                                            {game.winner_player_id === game.turing_player?.id
+                                                ? game.turing_player?.group_name
+                                                : game.lovelace_player?.group_name}
+                                        </strong>
+                                    </span>
+                                ) : (
+                                    <span>Status: <strong>{game.status}</strong> | Turno: {game.current_turn_number}</span>
+                                )}
                             </p>
                         </div>
 
@@ -83,7 +93,7 @@ export function WatchListPage() {
                             className="cta-button"
                             style={{ margin: 0, padding: "10px 20px", fontSize: "1rem" }}
                         >
-                            ▶ Assistir
+                            Assistir
                         </Link>
                     </div>
                 ))}

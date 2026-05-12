@@ -154,47 +154,67 @@ body,
    ========================================= */
 
 /* Lvl 0: Chão neutro */
-.level-0 { 
-    background-color: #f8f9fa; 
-    border-color: #dfe4ea; 
+.level-0 {
+    background-color: #f8f9fa;
+    border-color: #dfe4ea;
 }
 
 /* Lvl 1: Começando a subir (Azul claro) */
-.level-1 { 
-    background-color: #74b9ff; 
-    border-color: #0984e3; 
-    color: #fff; 
+.level-1 {
+    background-color: #74b9ff;
+    border-color: #0984e3;
+    color: #fff;
 }
 
 /* Lvl 2: Quase lá (Azul forte) */
-.level-2 { 
-    background-color: #0984e3; 
-    border-color: #0652dd; 
-    color: #fff; 
+.level-2 {
+    background-color: #0984e3;
+    border-color: #0652dd;
+    color: #fff;
 }
 
 /* Lvl 3: VITÓRIA! (Dourado chamativo) */
-.level-3 { 
-    background-color: #f1c40f; 
-    border-color: #f39c12; 
-    box-shadow: 0 0 10px rgba(241, 196, 15, 0.6); 
+.level-3 {
+    background-color: #f1c40f;
+    border-color: #f39c12;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.6);
 }
 
 /* Lvl 4: BLOQUEADO (Cinza escuro / Muro) */
-.level-4 { 
-    background-color: #2d3436; 
-    border-color: #000; 
-    color: #b2bec3; 
+.level-4 {
+    background-color: #2d3436;
+    border-color: #000;
+    color: #b2bec3;
 }
 
 /* Ajuste das letrinhas "Lvl X" para dar leitura */
-.level-1 .level-text, .level-2 .level-text { color: #fff; }
-.level-0 .level-text, .level-3 .level-text { color: #2d3436; }
-.level-4 .level-text { color: #636e72; }
+.level-1 .level-text,
+.level-2 .level-text {
+    color: #fff;
+}
+
+.level-0 .level-text,
+.level-3 .level-text {
+    color: #2d3436;
+}
+
+.level-4 .level-text {
+    color: #636e72;
+}
 
 /* Cores dos Professores (Times) */
-.team-1 { background-color: #00cec9; color: #000; } /* Ciano */
-.team-2 { background-color: #ff7675; color: #fff; } /* Vermelho Salmão */
+.team-1 {
+    background-color: #00cec9;
+    color: #000;
+}
+
+/* Ciano */
+.team-2 {
+    background-color: #ff7675;
+    color: #fff;
+}
+
+/* Vermelho Salmão */
 
 /* =========================================
    6. ESTADOS DE DESTAQUE E ANIMAÇÕES
@@ -512,10 +532,18 @@ body,
 }
 
 /* ---- TABULEIRO ROSA NEON (MODO ESCURO) ---- */
-.dark-mode .board-cell { border-color: #383e47; }
-.dark-mode .level-text { color: #f1f2f6; }
+.dark-mode .board-cell {
+    border-color: #383e47;
+}
+
+.dark-mode .level-text {
+    color: #f1f2f6;
+}
+
 .dark-mode .coord-x,
-.dark-mode .coord-y { color: #dcdde1; }
+.dark-mode .coord-y {
+    color: #dcdde1;
+}
 
 /* Lvl 0: Base Neutra Escura */
 .dark-mode .level-0 {
@@ -541,19 +569,35 @@ body,
     color: #000;
     box-shadow: 0 0 15px rgba(253, 121, 168, 0.6);
 }
-.dark-mode .level-3 .level-text { color: #000; }
+
+.dark-mode .level-3 .level-text {
+    color: #000;
+}
 
 /* Lvl 4: BLOQUEADO (Preto absoluto com borda de aviso vermelha) */
 .dark-mode .level-4 {
     background-color: #0b0c10;
-    border-color: #c0392b; 
+    border-color: #c0392b;
     color: #444;
 }
-.dark-mode .level-4 .level-text { color: #666; }
+
+.dark-mode .level-4 .level-text {
+    color: #666;
+}
 
 /* Cores dos Times (Ajustadas para máximo contraste no escuro) */
-.dark-mode .team-1 { background-color: #00cec9; color: #000; } /* Ciano Neon */
-.dark-mode .team-2 { background-color: #fdcb6e; color: #000; } /* Amarelo Neon */
+.dark-mode .team-1 {
+    background-color: #00cec9;
+    color: #000;
+}
+
+/* Ciano Neon */
+.dark-mode .team-2 {
+    background-color: #fdcb6e;
+    color: #000;
+}
+
+/* Amarelo Neon */
 
 .dark-mode .team-2 {
     background-color: #fdcb6e;
@@ -590,20 +634,23 @@ body,
 
 /* Estilo Base (Modo Claro) */
 .game-card {
-    background-color: #ffffff; /* Fundo branco no claro */
-    padding: 20px; 
-    border-radius: 12px; 
+    background-color: #ffffff;
+    /* Fundo branco no claro */
+    padding: 20px;
+    border-radius: 12px;
     border: 1px solid #dfe4ea;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* Sombra suave */
 }
 
 .game-card:hover {
-    transform: translateY(-2px); /* Efeito de flutuar no hover */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    /* Efeito de flutuar no hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .game-card-content {
@@ -612,33 +659,40 @@ body,
 
 .game-card h3 {
     margin: 0 0 5px 0;
-    color: #2d3436; /* Letra escura no claro */
+    color: #2d3436;
+    /* Letra escura no claro */
     font-size: 1.2rem;
 }
 
 .game-card p {
     margin: 0;
     font-size: 14px;
-    color: #636e72; /* Subtítulo cinza no claro */
+    color: #636e72;
+    /* Subtítulo cinza no claro */
 }
 
 /* ---- Estilo para MODO ESCURO (.dark-mode) ---- */
 .dark-mode .game-card {
-    background-color: #2d3436; /* Fundo escuro do card no escuro */
-    border-color: #444; /* Borda mais discreta */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    background-color: #2d3436;
+    /* Fundo escuro do card no escuro */
+    border-color: #444;
+    /* Borda mais discreta */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .dark-mode .game-card:hover {
-    border-color: #fd79a8; /* Borda fica rosa neon no hover */
+    border-color: #fd79a8;
+    /* Borda fica rosa neon no hover */
 }
 
 .dark-mode .game-card h3 {
-    color: #f1f2f6; /* Título FICA BRANCO no escuro */
+    color: #f1f2f6;
+    /* Título FICA BRANCO no escuro */
 }
 
 .dark-mode .game-card p {
-    color: #b2bec3; /* Subtítulo fica cinza claro no escuro */
+    color: #b2bec3;
+    /* Subtítulo fica cinza claro no escuro */
 }
 
 /* =========================================
@@ -646,29 +700,35 @@ body,
    ========================================= */
 
 @media (max-width: 768px) {
+
     /* 1. Header e Navegação no Mobile */
     .app-header {
         flex-direction: column;
         padding: 15px 20px;
         gap: 15px;
     }
+
     .app-nav {
         gap: 10px;
     }
 
     /* 2. Ajustes na Home Page */
-    .hero-title { 
-        font-size: 2rem; 
+    .hero-title {
+        font-size: 2rem;
     }
+
     .hero-section {
         padding: 40px 20px;
     }
+
     .features-container {
         margin-top: 20px;
     }
+
     .feature-card {
         min-width: 100%;
     }
+
     .team-member {
         width: 100%;
         justify-content: center;
@@ -678,36 +738,89 @@ body,
     .board-container {
         padding: 15px 10px;
     }
+
     .game-info-panel {
         flex-direction: column;
         text-align: center;
         gap: 10px;
     }
-    
+
     .board-grid {
         grid-template-columns: repeat(5, 55px);
         gap: 5px;
     }
+
     .board-cell {
         width: 55px;
         height: 55px;
     }
-    .coord-x { width: 55px; font-size: 14px; }
-    .coord-y { height: 55px; width: 15px; font-size: 14px; }
-    
-    .row-coordinates { 
-        margin-right: 8px; 
-        gap: 5px; 
+
+    .coord-x {
+        width: 55px;
+        font-size: 14px;
     }
+
+    .coord-y {
+        height: 55px;
+        width: 15px;
+        font-size: 14px;
+    }
+
+    .row-coordinates {
+        margin-right: 8px;
+        gap: 5px;
+    }
+
     .col-coordinates {
         padding-left: 23px;
         gap: 5px;
         margin-top: 8px;
     }
 
-    .level-text { font-size: 9px; }
+    .level-text {
+        font-size: 9px;
+    }
+
     .professor-badge {
         font-size: 8px;
         padding: 2px 3px;
     }
+}
+
+/* =========================================
+   12. BANNER DE VENCEDOR (DINÂMICO)
+   ========================================= */
+.winner-banner {
+    margin-top: 20px;
+    padding: 20px;
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    /* Padrão Modo Claro: Azul para combinar com o tabuleiro */
+    background: linear-gradient(90deg, #74b9ff, #0984e3);
+    box-shadow: 0 4px 15px rgba(9, 132, 227, 0.4);
+}
+
+.winner-banner-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.winner-banner-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.winner-name {
+    text-transform: uppercase;
+    margin-left: 8px;
+    text-decoration: underline;
+}
+
+/* Modo Escuro: Rosa Neon para combinar com o tabuleiro escuro */
+.dark-mode .winner-banner {
+    background: linear-gradient(90deg, #fd79a8, #e84393);
+    box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
 }

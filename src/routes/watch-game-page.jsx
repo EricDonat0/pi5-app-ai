@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { BoardCell } from "../components/BoardCell";
+import { WinnerBanner } from "../components/WinnerBanner";
 
 export function WatchGamePage() {
     const { id } = useParams();
@@ -96,24 +98,13 @@ export function WatchGamePage() {
 
                             <div className="board-grid">
                                 {data.board.map((row, rowIndex) =>
-                                    row.map((cell, colIndex) => {
-                                        const isTeam1 = cell.professor === "CLARO" || cell.professor === "REY";
-                                        const teamClass = isTeam1 ? "team-1" : "team-2";
-
-                                        return (
-                                            <div
-                                                key={`${rowIndex}-${colIndex}`}
-                                                className={`board-cell level-${cell.level}`}
-                                            >
-                                                <span className="level-text">Lvl {cell.level}</span>
-                                                {cell.professor && (
-                                                    <div className={`professor-badge ${teamClass}`}>
-                                                        {cell.professor}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })
+                                    row.map((cell, colIndex) => (
+                                        <BoardCell
+                                            key={`${rowIndex}-${colIndex}`}
+                                            level={cell.level}
+                                            professor={cell.professor}
+                                        />
+                                    ))
                                 )}
                             </div>
                         </div>
@@ -126,9 +117,11 @@ export function WatchGamePage() {
                     </div>
 
                     {data.status === "FINISHED" && (
-                        <div style={{ marginTop: "20px", padding: "15px", background: "#fd79a8", color: "white", borderRadius: "10px", fontWeight: "bold", textAlign: "center" }}>
-                            🏆 Partida Finalizada!
-                        </div>
+                        <WinnerBanner
+                            winnerName={data.winner_player_id === data.turing_player?.id
+                                ? data.turing_player?.group_name
+                                : data.lovelace_player?.group_name}
+                        />
                     )}
                 </div>
             )}
