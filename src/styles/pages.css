@@ -1,0 +1,353 @@
+/* =========================================
+   1. HOME PAGE - HERO & FEATURES
+   ========================================= */
+.hero-section {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 60px 20px 100px 20px;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    margin-top: -20px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #b2bec3;
+    font-weight: 400;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: -60px auto 50px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-top: 5px solid #ccc;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.card-api {
+    border-top-color: #0984e3;
+}
+
+.card-ia {
+    border-top-color: #00b894;
+}
+
+.card-react {
+    border-top-color: #fdcb6e;
+}
+
+/* =========================================
+   2. EQUIPE DE DESENVOLVIMENTO
+   ========================================= */
+.team-section {
+    text-align: center;
+    margin: 40px auto 60px auto;
+    max-width: 1000px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background: #f1f2f6;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #2d3436;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.team-member:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-color: #0a66c2;
+}
+
+/* FIX ÍCONE LINKEDIN */
+.linkedin-icon {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    fill: #0a66c2;
+}
+
+.orientador {
+    background: #ffeaa7;
+    color: #d35400;
+}
+
+/* =========================================
+   3. BOTÕES E COMPONENTES GERAIS
+   ========================================= */
+
+/* =========================================
+   O CONTAINER DO BOTÃO (CENTRALIZAÇÃO)
+   ========================================= */
+.cta-container {
+    text-align: center; /* O segredo para centralizar o botão está aqui! */
+    width: 100%;
+    margin: 40px auto 80px auto; /* Espaçamento vertical equilibrado */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* O BOTÃO PRINCIPAL (CTA) */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 45px; /* Aumentei um pouco para dar mais presença */
+    background: linear-gradient(90deg, #00b894, #00cec9);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 15px rgba(0, 184, 148, 0.3);
+    transition: all 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+/* Efeito de hover para combinar com o resto do site */
+.cta-button:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 206, 201, 0.5);
+    filter: brightness(1.1);
+}
+
+.cta-button:active {
+    transform: scale(0.98);
+}
+
+/* --- VERSÃO HOME (GRANDE E ELÁSTICA) --- */
+.cta-container .cta-button {
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    margin: 20px 0;
+}
+
+.cta-container .cta-button:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 206, 201, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- VERSÃO LISTA (ALINHADA COM ATUALIZAR) --- */
+.list-controls .cta-button {
+    height: 45px;
+    padding: 0 30px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.list-controls .cta-button:hover:not(:disabled),
+.secondary-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+}
+
+/* BOTÃO ATUALIZAR LISTA */
+.secondary-button {
+    height: 45px;
+    padding: 0 25px;
+    background-color: #f1f2f6;
+    color: #2d3436;
+    border: 2px solid #dfe4ea;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.secondary-button:hover:not(:disabled) {
+    background-color: #dfe4ea;
+    border-color: #0984e3;
+}
+
+/* CONTAINER DOS BOTÕES DA LISTA */
+.list-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+/* =========================================
+   4. CARDS E BANNERS
+   ========================================= */
+.game-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #dfe4ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.game-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.winner-banner {
+    margin-top: 20px;
+    padding: 20px;
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 800;
+    background: linear-gradient(90deg, #74b9ff, #0984e3);
+    box-shadow: 0 4px 15px rgba(9, 132, 227, 0.4);
+}
+
+/* =========================================
+   5. DARK MODE
+   ========================================= */
+.dark-mode .hero-section {
+    background: linear-gradient(135deg, #0f1012, #1b1620, #2c1626);
+}
+
+.dark-mode .feature-card {
+    background-color: #1e272e;
+    border-color: #333;
+}
+
+.dark-mode .team-member {
+    background: #2d3436;
+    color: #f1f2f6;
+}
+
+.dark-mode .game-card {
+    background-color: #1e272e;
+    border-color: #444;
+}
+
+.dark-mode .winner-banner {
+    background: linear-gradient(90deg, #fd79a8, #e84393);
+    box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+}
+
+.dark-mode .secondary-button {
+    background-color: #2d3436;
+    border-color: #444;
+    color: #f1f2f6;
+}
+
+.dark-mode .secondary-button:hover:not(:disabled) {
+    border-color: #fd79a8;
+    color: #fd79a8;
+    box-shadow: 0 0 15px rgba(253, 121, 168, 0.3);
+}
+
+.dark-mode .cta-button {
+    box-shadow: 0 0 20px rgba(0, 184, 148, 0.4);
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .cta-container .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .list-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-button,
+    .secondary-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* =========================================
+   BANNER DE VENCEDOR (Página de Jogo)
+   ========================================= */
+.winner-banner {
+    margin: 30px auto; /* Centraliza horizontalmente */
+    padding: 30px 20px;
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    /* Cores Modo Claro */
+    background: linear-gradient(90deg, #74b9ff, #0984e3);
+    box-shadow: 0 4px 15px rgba(9, 132, 227, 0.4);
+    
+    /* Ajuste de largura para alinhar com o tabuleiro */
+    width: 100%;
+    max-width: 480px; 
+    box-sizing: border-box;
+}
+
+.winner-banner-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.winner-banner-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Modo Escuro do Banner */
+.dark-mode .winner-banner {
+    background: linear-gradient(90deg, #fd79a8, #e84393);
+    box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+}

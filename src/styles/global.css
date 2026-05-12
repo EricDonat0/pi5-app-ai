@@ -1,0 +1,78 @@
+/* RESET GLOBAL & BOX MODEL */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Garante que padding/border não aumentem o tamanho fixo */
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    /* Evita rolagem lateral acidental no mobile */
+}
+
+/* DARK MODE BASE */
+.dark-mode {
+    background-color: #121212;
+    color: #f1f2f6;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p {
+    color: #f1f2f6 !important;
+}
+
+/* UTILITÁRIOS GERAIS */
+.status-container {
+    margin: 20px 0;
+    padding: 0 15px;
+    /* Espaço nas laterais para não grudar na borda do celular */
+    text-align: center;
+}
+
+.error-text {
+    color: red;
+    word-wrap: break-word;
+    /* Evita que mensagens de erro longas quebrem o layout */
+}
+
+/* =========================================
+   RESPONSIVIDADE GLOBAL (TIPOGRAFIA)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Ajusta o tamanho base da fonte para telas menores */
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Ajustes extras para celulares pequenos */
+    .status-container {
+        margin: 10px 0;
+    }
+}

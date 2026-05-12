@@ -4,13 +4,15 @@ import { GameCard } from "../components/GameCard";
 export function WatchListPage() {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [creating, setCreating] = useState(false);
     const [error, setError] = useState(false);
+
+    const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
 
     async function fetchGamesList() {
         setLoading(true);
         setError(false);
         try {
-            const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
             const response = await fetch(
                 "https://pi5-api-production.up.railway.app/api/v1/games?page=1&page_size=20",
                 {
@@ -34,6 +36,35 @@ export function WatchListPage() {
         }
     }
 
+    async function createNewGame() {
+        setCreating(true);
+        try {
+            const response = await fetch("https://pi5-api-production.up.railway.app/api/v1/games", {
+                method: "POST",
+                headers: {
+                    "accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${MEU_TOKEN}`
+                },
+                body: JSON.stringify({
+                    player_1_id: 21,
+                    vs_random_bot: true,
+                    ai_player_move_endpoint: null
+                })
+            });
+
+            if (response.ok) {
+                fetchGamesList();
+            } else {
+                alert("Erro ao criar nova partida.");
+            }
+        } catch (err) {
+            console.error("Erro ao criar jogo:", err);
+        } finally {
+            setCreating(false);
+        }
+    }
+
     useEffect(() => {
         fetchGamesList();
     }, []);
@@ -46,14 +77,25 @@ export function WatchListPage() {
                 Lista das últimas partidas geradas no servidor.
             </p>
 
-            <button
-                onClick={fetchGamesList}
-                style={{ marginBottom: "20px", padding: "10px 20px", cursor: "pointer", borderRadius: "8px", border: "1px solid #ccc" }}
-            >
-                Atualizar Lista
-            </button>
+            <div className="list-controls">
+                <button
+                    onClick={fetchGamesList}
+                    className="secondary-button"
+                    disabled={loading}
+                >
+                    {loading ? "Buscando..." : "Atualizar Lista"}
+                </button>
 
-            {loading && <p>A carregar partidas...</p>}
+                <button
+                    onClick={createNewGame}
+                    className="cta-button"
+                    disabled={creating}
+                >
+                    {creating ? "Iniciando..." : "Nova Partida"}
+                </button>
+            </div>
+
+            {loading && games.length === 0 && <p>A carregar partidas...</p>}
             {error && <p className="error-text">Erro ao carregar as partidas. Verifique o seu token.</p>}
 
             {!loading && !error && games.length === 0 && (

@@ -1,0 +1,151 @@
+/* =========================================
+   1. HEADER (CABEÇALHO)
+   ========================================= */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.header-logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2d3436;
+}
+
+.app-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #636e72;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0984e3;
+    background-color: #f1f2f6;
+}
+
+/* =========================================
+   2. FOOTER (RODAPÉ)
+   ========================================= */
+.app-footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #636e72;
+    font-weight: bold;
+    border-top: 1px solid #dfe4ea;
+    margin-top: 40px;
+}
+
+/* =========================================
+   3. BOTÃO DE TEMA (BASE)
+   ========================================= */
+.theme-toggle-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #2d3436;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   4. DARK MODE SHELL
+   ========================================= */
+.dark-mode .app-header {
+    background-color: #1e272e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .header-logo h1 {
+    color: #f1f2f6;
+}
+
+.dark-mode .dark-mode .nav-link {
+    color: #b2bec3;
+}
+
+.dark-mode .nav-link:hover {
+    color: #fd79a8;
+    background-color: #2d3436;
+}
+
+.dark-mode .app-footer {
+    background-color: #1e272e;
+    border-top-color: #333;
+    color: #b2bec3;
+}
+
+.dark-mode .theme-toggle-btn {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+/* =========================================
+   5. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================= */
+
+/* Tablets (iPad, etc) */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 15px 20px;
+        /* Reduzi as laterais */
+    }
+
+    .app-nav {
+        gap: 15px;
+        /* Links mais próximos */
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Celulares (iPhone, Android) */
+@media (max-width: 580px) {
+    .app-header {
+        flex-direction: column;
+        /* Empilha: Logo em cima, Nav/Botão embaixo */
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .header-logo h1 {
+        font-size: 1.3rem;
+        /* Título um pouco menor */
+    }
+
+    .app-nav {
+        width: 100%;
+        justify-content: center;
+        /* Centraliza o Home/Watch */
+        gap: 10px;
+    }
+
+    .theme-toggle-btn {
+        width: 80%;
+        /* Botão maior para facilitar o toque no celular */
+        max-width: 200px;
+    }
+}

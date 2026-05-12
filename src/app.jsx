@@ -1,9 +1,13 @@
+import './styles/global.css';
+import './styles/header-footer.css';
+import './styles/board.css';
+import './styles/pages.css';
 import { BrowserRouter, Routes, Route } from "react-router";
 import { useState } from "react";
 import { AppLayout } from "./app-layout";
-import { HomePage } from "@/routes/home-page";
-import { WatchListPage } from "@/routes/watch-page";
-import { WatchGamePage } from "@/routes/watch-game-page";
+import { HomePage } from "@/routes/HomePage";
+import { WatchListPage } from "@/routes/WatchListPage";
+import { WatchGamePage } from "@/routes/WatchGamePage";
 
 export function App() {
     return (

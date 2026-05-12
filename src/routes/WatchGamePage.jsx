@@ -9,15 +9,10 @@ export function WatchGamePage() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const rows = ["5", "4", "3", "2", "1"];
-    const cols = ["A", "B", "C", "D", "E"];
-
     async function fetchGame() {
         setError(false);
-
         try {
             const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
-
             const response = await fetch(
                 `https://pi5-api-production.up.railway.app/api/v1/games/${id}`,
                 {
@@ -47,7 +42,6 @@ export function WatchGamePage() {
 
     useEffect(() => {
         if (!id) return;
-
         fetchGame();
 
         const intervalId = setInterval(() => {
@@ -62,7 +56,9 @@ export function WatchGamePage() {
             <h1 style={{ textAlign: "center", marginTop: "20px" }}>Assistindo Jogo #{id}</h1>
 
             <div style={{ textAlign: "center", marginBottom: "20px" }}>
-                <Link to="/watch" style={{ textDecoration: "none", fontWeight: "bold" }}>&lt; Voltar para a lista</Link>
+                <Link to="/watch" style={{ textDecoration: "none", fontWeight: "bold" }}>
+                    &lt; Voltar para a lista
+                </Link>
             </div>
 
             {loading && !data && (
@@ -79,7 +75,6 @@ export function WatchGamePage() {
 
             {data && data.board && (
                 <div className="game-wrapper">
-
                     <div className="game-info-panel">
                         <div><strong>Turno:</strong> {data.current_turn_number}</div>
                         <div><strong>Status:</strong> {data.status}</div>
@@ -89,30 +84,16 @@ export function WatchGamePage() {
                     </div>
 
                     <div className="board-container">
-                        <div className="chessboard-main-row">
-                            <div className="row-coordinates">
-                                {rows.map(num => (
-                                    <div key={num} className="coord-y">{num}</div>
-                                ))}
-                            </div>
-
-                            <div className="board-grid">
-                                {data.board.map((row, rowIndex) =>
-                                    row.map((cell, colIndex) => (
-                                        <BoardCell
-                                            key={`${rowIndex}-${colIndex}`}
-                                            level={cell.level}
-                                            professor={cell.professor}
-                                        />
-                                    ))
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="col-coordinates">
-                            {cols.map(letra => (
-                                <div key={letra} className="coord-x">{letra}</div>
-                            ))}
+                        <div className="board-grid">
+                            {data.board.map((row, rowIndex) =>
+                                row.map((cell, colIndex) => (
+                                    <BoardCell
+                                        key={`${rowIndex}-${colIndex}`}
+                                        level={cell.level}
+                                        professor={cell.professor}
+                                    />
+                                ))
+                            )}
                         </div>
                     </div>
 
