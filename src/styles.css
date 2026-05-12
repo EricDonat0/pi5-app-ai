@@ -1,18 +1,29 @@
 /* =========================================
+   0. RESET GLOBAL
+   ========================================= */
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    /* Fonte limpa padrão */
+}
+
+/* =========================================
    1. CONTAINERS E PAINÉIS DE INFORMAÇÃO
    ========================================= */
-
 .status-container {
     margin: 20px 0;
     text-align: center;
-    /* Centraliza o texto de carregamento/erro */
 }
 
 .error-text {
     color: red;
 }
 
-/* Wrapper para centralizar o jogo todo na tela */
 .game-wrapper {
     display: flex;
     flex-direction: column;
@@ -32,7 +43,6 @@
     align-items: center;
     width: 100%;
     max-width: 480px;
-    /* Mantém o painel com a mesma largura do tabuleiro */
     box-sizing: border-box;
 }
 
@@ -43,43 +53,32 @@
 }
 
 /* =========================================
-   2. LAYOUT DO TABULEIRO (CHESSBOARD) - CORRIGIDO
+   2. LAYOUT DO TABULEIRO (CHESSBOARD)
    ========================================= */
-
-/* Container que agrupa as coordenadas e o tabuleiro */
 .board-container {
     display: inline-block;
-    /* Importante para o alinhamento inline */
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Linha principal: Números + Grid */
 .chessboard-main-row {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    /* Alinha o grid no topo dos números */
 }
 
-/* Coluna de Números (5 a 1) */
 .row-coordinates {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* Gap idêntico ao do grid */
     margin-right: 12px;
-    /* Espaço entre números e grid */
 }
 
-/* Estilo de cada número */
 .coord-y {
     height: 70px;
-    /* Mesma altura da célula */
     width: 20px;
-    /* Largura fixa para os números */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,22 +87,16 @@
     color: #a4b0be;
 }
 
-/* Linha de Letras (A a E) */
 .col-coordinates {
     display: flex;
     flex-direction: row;
     gap: 8px;
-    /* Gap idêntico ao do grid */
     margin-top: 12px;
-    /* Espaço entre grid e letras */
     padding-left: 32px;
-    /* Compensa a largura da coluna de números (20px + 12px) */
 }
 
-/* Estilo de cada letra */
 .coord-x {
     width: 70px;
-    /* Mesma largura da célula */
     display: flex;
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
@@ -114,13 +107,11 @@
 /* =========================================
    3. GRID E CÉLULAS BASE
    ========================================= */
-
 .board-grid {
     display: grid;
     grid-template-columns: repeat(5, 70px);
     gap: 8px;
     margin-top: 0;
-    /* Removido o marginTop que quebrava o alinhamento */
 }
 
 .board-cell {
@@ -140,9 +131,8 @@
 }
 
 /* =========================================
-   4. CONTEÚDO DA CÉLULA (TEXTOS E PEÇAS)
+   4. CONTEÚDO DA CÉLULA
    ========================================= */
-
 .level-text {
     font-size: 10px;
     font-weight: bold;
@@ -160,45 +150,55 @@
 }
 
 /* =========================================
-   5. CORES DINÂMICAS (NÍVEIS E TIMES) - NOVAS CORES 1 e 2
+   5. CORES DINÂMICAS (NÍVEIS E TIMES) - MODO CLARO
    ========================================= */
 
-.level-0 {
-    background-color: #f1f1f1;
+/* Lvl 0: Chão neutro */
+.level-0 { 
+    background-color: #f8f9fa; 
+    border-color: #dfe4ea; 
 }
 
-/* NOVA COR LVL 1: Mais clara (#d1e9ff) */
-.level-1 {
-    background-color: #d1e9ff;
+/* Lvl 1: Começando a subir (Azul claro) */
+.level-1 { 
+    background-color: #74b9ff; 
+    border-color: #0984e3; 
+    color: #fff; 
 }
 
-/* NOVA COR LVL 2: Mais escura/saturada (#63c5e6) */
-.level-2 {
-    background-color: #63c5e6;
+/* Lvl 2: Quase lá (Azul forte) */
+.level-2 { 
+    background-color: #0984e3; 
+    border-color: #0652dd; 
+    color: #fff; 
 }
 
-.level-3 {
-    background-color: gold;
-    border-color: #ff9f43;
+/* Lvl 3: VITÓRIA! (Dourado chamativo) */
+.level-3 { 
+    background-color: #f1c40f; 
+    border-color: #f39c12; 
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.6); 
 }
 
-.level-4 {
-    background-color: #333;
-    color: #fff;
+/* Lvl 4: BLOQUEADO (Cinza escuro / Muro) */
+.level-4 { 
+    background-color: #2d3436; 
+    border-color: #000; 
+    color: #b2bec3; 
 }
 
-.team-1 {
-    background-color: #007bff;
-}
+/* Ajuste das letrinhas "Lvl X" para dar leitura */
+.level-1 .level-text, .level-2 .level-text { color: #fff; }
+.level-0 .level-text, .level-3 .level-text { color: #2d3436; }
+.level-4 .level-text { color: #636e72; }
 
-.team-2 {
-    background-color: #ff006e;
-}
+/* Cores dos Professores (Times) */
+.team-1 { background-color: #00cec9; color: #000; } /* Ciano */
+.team-2 { background-color: #ff7675; color: #fff; } /* Vermelho Salmão */
 
 /* =========================================
    6. ESTADOS DE DESTAQUE E ANIMAÇÕES
    ========================================= */
-
 .board-cell:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
@@ -217,4 +217,440 @@
 .highlight-mentor {
     border-color: #a29bfe !important;
     box-shadow: 0 0 12px rgba(162, 155, 254, 0.6) !important;
+}
+
+/* =========================================
+   7. PÁGINA INICIAL E EQUIPE
+   ========================================= */
+.hero-section {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 60px 20px 100px 20px;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    margin-top: -20px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #b2bec3;
+    font-weight: 400;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: -60px auto 50px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-top: 5px solid #ccc;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.card-api {
+    border-top-color: #0984e3;
+}
+
+.card-ia {
+    border-top-color: #00b894;
+}
+
+.card-react {
+    border-top-color: #fdcb6e;
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    color: #2d3436;
+}
+
+.feature-card p {
+    color: #636e72;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.team-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.team-section h2 {
+    color: #2d3436;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.advisor-grid {
+    margin-top: 20px;
+}
+
+.team-member {
+    background: #f1f2f6;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #2d3436;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.team-member:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-color: #0a66c2;
+}
+
+.orientador {
+    background: #ffeaa7;
+    color: #d35400;
+}
+
+.orientador:hover {
+    border-color: #e67e22;
+    background-color: #fff3cd;
+}
+
+.linkedin-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    fill: #0a66c2;
+}
+
+.cta-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(90deg, #00b894, #00cec9);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+    transition: all 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.6);
+    color: white;
+}
+
+/* =========================================
+   8. LAYOUT GLOBAL (HEADER, NAV E FOOTER)
+   ========================================= */
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    /* Sombra elegante */
+    position: sticky;
+    /* Gruda no topo ao rolar a página */
+    top: 0;
+    z-index: 1000;
+    /* Garante que fique por cima do tabuleiro */
+    transition: background-color 0.3s ease;
+}
+
+.header-logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2d3436;
+}
+
+.app-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #636e72;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0984e3;
+    background-color: #f1f2f6;
+}
+
+.app-footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #636e72;
+    font-weight: bold;
+    border-top: 1px solid #dfe4ea;
+    margin-top: 40px;
+}
+
+.theme-toggle-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #2d3436;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   REGRAS DA NAVBAR NO DARK MODE
+   ========================================= */
+.dark-mode .app-header {
+    background-color: #1e272e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .header-logo h1 {
+    color: #f1f2f6;
+}
+
+.dark-mode .nav-link {
+    color: #b2bec3;
+}
+
+.dark-mode .nav-link:hover {
+    color: #fd79a8;
+    /* Hover rosa neon pra combinar com o tema */
+    background-color: #2d3436;
+}
+
+.dark-mode .app-footer {
+    background-color: #1e272e;
+    border-top-color: #333;
+    color: #b2bec3;
+}
+
+/* =========================================
+   9. DARK MODE GLOBAL
+   ========================================= */
+.dark-mode {
+    background-color: #121212;
+    color: #f1f2f6;
+}
+
+/* Garante que os títulos mudem de cor no modo escuro */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p {
+    color: #f1f2f6 !important;
+}
+
+/* Ajuste de Links no modo escuro para combinar com o tema */
+.dark-mode a:not(.cta-button):not(.team-member) {
+    color: #fd79a8;
+}
+
+/* Botão de Toggle muda pro modo "Sol" */
+.dark-mode .theme-toggle-btn {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+/* Elementos do Tabuleiro e Painéis */
+.dark-mode .game-info-panel,
+.dark-mode .board-container,
+.dark-mode .feature-card {
+    background-color: #1e272e;
+    border-color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- TABULEIRO ROSA NEON (MODO ESCURO) ---- */
+.dark-mode .board-cell { border-color: #383e47; }
+.dark-mode .level-text { color: #f1f2f6; }
+.dark-mode .coord-x,
+.dark-mode .coord-y { color: #dcdde1; }
+
+/* Lvl 0: Base Neutra Escura */
+.dark-mode .level-0 {
+    background-color: #22262b;
+}
+
+/* Lvl 1: Rosa Escuro/Ameixa (Começando a subir) */
+.dark-mode .level-1 {
+    background-color: #6d214f;
+    border-color: #b33771;
+}
+
+/* Lvl 2: Magenta Vibrante (Perigo/Quase Vitória) */
+.dark-mode .level-2 {
+    background-color: #b33771;
+    border-color: #fd79a8;
+}
+
+/* Lvl 3: VITÓRIA! (Rosa Claro Neon brilhante) */
+.dark-mode .level-3 {
+    background-color: #fd79a8;
+    border-color: #ff9ff3;
+    color: #000;
+    box-shadow: 0 0 15px rgba(253, 121, 168, 0.6);
+}
+.dark-mode .level-3 .level-text { color: #000; }
+
+/* Lvl 4: BLOQUEADO (Preto absoluto com borda de aviso vermelha) */
+.dark-mode .level-4 {
+    background-color: #0b0c10;
+    border-color: #c0392b; 
+    color: #444;
+}
+.dark-mode .level-4 .level-text { color: #666; }
+
+/* Cores dos Times (Ajustadas para máximo contraste no escuro) */
+.dark-mode .team-1 { background-color: #00cec9; color: #000; } /* Ciano Neon */
+.dark-mode .team-2 { background-color: #fdcb6e; color: #000; } /* Amarelo Neon */
+
+.dark-mode .team-2 {
+    background-color: #fdcb6e;
+    /* Amarelo Neon */
+    color: #000;
+}
+
+/* Home Page e Equipe no Escuro */
+.dark-mode .hero-section {
+    /* Fundo escuro com um leve degradê arroxeado para combinar com o rosa */
+    background: linear-gradient(135deg, #0f1012, #1b1620, #2c1626);
+}
+
+.dark-mode .team-member {
+    background: #2d3436;
+    color: #f1f2f6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .team-member:hover {
+    background-color: #3b4245;
+    border-color: #fd79a8;
+    /* Borda do hover do time fica rosa no modo escuro */
+}
+
+.dark-mode .orientador {
+    background: #d35400;
+    color: #fff;
+}
+
+/* =========================================
+   10. RESPONSIVIDADE (CELULARES E TABLETS)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* 1. Header e Navegação no Mobile */
+    .app-header {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    .app-nav {
+        gap: 10px;
+    }
+
+    /* 2. Ajustes na Home Page */
+    .hero-title { 
+        font-size: 2rem; 
+    }
+    .hero-section {
+        padding: 40px 20px;
+    }
+    .features-container {
+        margin-top: 20px;
+    }
+    .feature-card {
+        min-width: 100%;
+    }
+    .team-member {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 3. Ajustes no Tabuleiro de Xadrez (Watch Game) */
+    .board-container {
+        padding: 15px 10px;
+    }
+    .game-info-panel {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .board-grid {
+        grid-template-columns: repeat(5, 55px);
+        gap: 5px;
+    }
+    .board-cell {
+        width: 55px;
+        height: 55px;
+    }
+    .coord-x { width: 55px; font-size: 14px; }
+    .coord-y { height: 55px; width: 15px; font-size: 14px; }
+    
+    .row-coordinates { 
+        margin-right: 8px; 
+        gap: 5px; 
+    }
+    .col-coordinates {
+        padding-left: 23px;
+        gap: 5px;
+        margin-top: 8px;
+    }
+
+    .level-text { font-size: 9px; }
+    .professor-badge {
+        font-size: 8px;
+        padding: 2px 3px;
+    }
 }
