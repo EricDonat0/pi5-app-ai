@@ -43,7 +43,7 @@ export function WatchListPage() {
 
     return (
         <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px 20px", textAlign: "center" }}>
-            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida 📺</h1>
+            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida</h1>
 
             <p style={{ color: "#636e72", marginBottom: "30px" }}>
                 Lista das últimas partidas geradas no servidor.
