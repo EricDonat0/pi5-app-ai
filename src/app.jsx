@@ -8,6 +8,7 @@ import { AppLayout } from "./app-layout";
 import { HomePage } from "@/routes/HomePage";
 import { WatchListPage } from "@/routes/WatchListPage";
 import { WatchGamePage } from "@/routes/WatchGamePage";
+import { BattlePage } from "@/routes/BattlePage";
 
 export function App() {
     return (
@@ -17,6 +18,8 @@ export function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/watch" element={<WatchListPage />} />
                     <Route path="/watch/:id" element={<WatchGamePage />} />
+                    
+                    <Route path="/battle" element={<BattlePage />} />
                 </Routes>
             </AppLayout>
         </BrowserRouter>
