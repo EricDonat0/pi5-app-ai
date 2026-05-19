@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BoardCell } from "../components/BoardCell";
 import { WinnerBanner } from "../components/WinnerBanner";
+import { api } from "../services/api";
 
 export function WatchGamePage() {
     const { id } = useParams();
@@ -12,25 +13,7 @@ export function WatchGamePage() {
     async function fetchGame() {
         setError(false);
         try {
-            const MEU_TOKEN = "kscIqVFJTa9iPFZ3HPuSkaEOCSJL-oHK3UMXzc4xxDE";
-            const response = await fetch(
-                `https://pi5-api-production.up.railway.app/api/v1/games/${id}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "accept": "application/json",
-                        "Authorization": `Bearer ${MEU_TOKEN}`
-                    }
-                }
-            );
-
-            if (!response.ok) {
-                if (response.status === 401) throw new Error("Erro 401: Token inválido.");
-                if (response.status === 404) throw new Error("Erro 404: Jogo não encontrado.");
-                throw new Error("Erro ao buscar estado do jogo");
-            }
-
-            const game = await response.json();
+            const game = await api.get(`/games/${id}`);
             setData(game);
         } catch (err) {
             console.error(err);
@@ -46,7 +29,7 @@ export function WatchGamePage() {
 
         const intervalId = setInterval(() => {
             fetchGame();
-        }, 2000);
+        }, 1000);
 
         return () => clearInterval(intervalId);
     }, [id]);

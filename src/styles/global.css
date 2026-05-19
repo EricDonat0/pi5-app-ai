@@ -6,6 +6,34 @@
     /* Garante que padding/border não aumentem o tamanho fixo */
 }
 
+/* =========================================
+   DEFINIÇÃO DO TEMA (CORES)
+   ========================================= */
+
+/* MODO CLARO (Default / Padrão) */
+:root {
+    /* Cores para o seletor de jogadores */
+    --player-select-bg: #ffffff;        /* Fundo da caixa */
+    --player-select-border: #e2e8f0;    /* Borda da caixa */
+    --player-select-text: #1e293b;      /* Cor do selo "Jogar como:" */
+    --player-dropdown-bg: #f8fafc;      /* Fundo do dropdown */
+    --player-dropdown-text: #0f172a;    /* Cor do texto dentro do dropdown */
+    --player-dropdown-border: #cbd5e1;  /* Borda do dropdown */
+    --primary-color: #007bff;           /* Cor de foco (azul padrão) */
+}
+
+/* MODO ESCURO (Ativado pela classe .dark-mode) */
+.dark-mode {
+    /* Cores para o seletor de jogadores (Modo Escuro) */
+    --player-select-bg: #1e2126;        /* Mesmo fundo dos cards escursos */
+    --player-select-border: #2d3139;    /* Borda escura */
+    --player-select-text: #e2e8f0;      /* Texto claro */
+    --player-dropdown-bg: #111315;      /* Fundo input escuro */
+    --player-dropdown-text: #ffffff;    /* Texto branco */
+    --player-dropdown-border: #3a3f4a;  /* Borda dropdown escura */
+    --primary-color: #00d2ff;           /* Cor de foco neon */
+}
+
 html,
 body,
 #root {
