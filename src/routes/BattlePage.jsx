@@ -66,7 +66,7 @@ export function BattlePage() {
 
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px", textAlign: "center" }}>
-            <h1 style={{ color: "#ff4757", fontSize: "2.5rem", margin: "0 0 10px 0" }}>⚔️ Arena de Batalha</h1>
+            <h1 style={{ color: "#ff4757", fontSize: "2.5rem", margin: "0 0 10px 0" }}>Arena de Batalha</h1>
             <p className="hero-subtitle" style={{ marginBottom: "40px" }}>
                 Prepare seu bot para o torneio. Insira o ID do adversário e inicie o combate.
             </p>

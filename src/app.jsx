@@ -9,6 +9,7 @@ import { HomePage } from "@/routes/HomePage";
 import { WatchListPage } from "@/routes/WatchListPage";
 import { WatchGamePage } from "@/routes/WatchGamePage";
 import { BattlePage } from "@/routes/BattlePage";
+import { RegisterPage } from "@/routes/RegisterPage";
 
 export function App() {
     return (
@@ -18,6 +19,8 @@ export function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/watch" element={<WatchListPage />} />
                     <Route path="/watch/:id" element={<WatchGamePage />} />
+
+                    <Route path="/registro" element={<RegisterPage />} />
                     
                     <Route path="/battle" element={<BattlePage />} />
                 </Routes>

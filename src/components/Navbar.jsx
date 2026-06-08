@@ -10,6 +10,12 @@ export function Navbar({ isDark, setIsDark }) {
             <nav className="app-nav">
                 <Link to="/" className="nav-link">Home</Link>
                 <Link to="/watch" className="nav-link">Watch</Link>
+                
+                {/* O novo link para registrar o jogador foi adicionado aqui */}
+                <Link to="/registro" className="nav-link">
+                    Registrar Jogador
+                </Link>
+                
                 <Link to="/battle" className="nav-link" style={{ color: "#ff4757", fontWeight: "bold" }}>
                     Batalhar
                 </Link>
