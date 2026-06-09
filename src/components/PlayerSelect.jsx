@@ -14,7 +14,7 @@ export const PLAYERS = [
     {
         id: 138,
         name: "PalermaBot V3 (Negamax Alpha-Beta)",
-        token: import.meta.env.VITE_API_TOKEN_PALERMA_V3_NEGAMAX_ALPHA_BETA
+        token: import.meta.env.VITE_API_TOKEN_ERIGUEI
     }
 ];
 
