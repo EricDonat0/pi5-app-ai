@@ -103,7 +103,7 @@ export function WatchListPage() {
             </div>
 
             {loading && games.length === 0 && <p>A carregar partidas...</p>}
-            {error && <p className="error-text">Erro ao carregar as partidas. Verifique se o seu token ainda é válido.</p>}
+            {error && <p className="error-text">Erro ao carregar as partidas. Selecione um jogador e atualize a lista.</p>}
             {!loading && !error && games.length === 0 && <p>Nenhuma partida encontrada.</p>}
 
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>

@@ -6,7 +6,9 @@ export function GameCard({ game }) {
 
     // Lendo o nome do robô ou o nome do grupo corretamente
     const player1Name = turingPlayer?.ai_player_name || turingPlayer?.group_name || "Bot 1";
-    const player2Name = lovelacePlayer?.ai_player_name || lovelacePlayer?.group_name || "Bot 2";
+    const player2Name = lovelacePlayer
+        ? (lovelacePlayer?.ai_player_name || lovelacePlayer?.group_name || "Jogador 2")
+        : "Aguardando adversario";
 
     // Lendo o campo exato da foto da API do professor
     const turingImg = turingPlayer?.ai_player_avatar;
@@ -15,7 +17,7 @@ export function GameCard({ game }) {
     // Lógica para definir quem é o vencedor
     const winnerName = game.winner_player_id === turingPlayer?.id
         ? player1Name
-        : player2Name;
+        : (lovelacePlayer ? player2Name : "Indefinido");
 
     return (
         <div className="game-card">

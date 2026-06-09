@@ -2,7 +2,8 @@ import { api } from "../services/api";
 
 export const PLAYERS = [
     // Atualizado para o ID 131
-    { id: 131, name: "PalermaBot (Arena API)", token: import.meta.env.VITE_API_TOKEN_PALERMABOT }
+    { id: 131, name: "PalermaBot (Arena API)", token: import.meta.env.VITE_API_TOKEN_PALERMABOT },
+    { id: 134, name: "Palerma_Lookahead_V2_Turbo_VTEC", token: import.meta.env.VITE_API_TOKEN_PALERMA_LOOKAHEAD_V2_TURBO_VTEC }
 ];
 
 export function PlayerSelect({ value, onChange, label, variant = "arena" }) {
