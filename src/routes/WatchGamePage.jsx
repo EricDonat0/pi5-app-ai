@@ -146,6 +146,8 @@ const styles = {
         padding: "18px 16px 40px",
         maxWidth: "1180px",
         margin: "0 auto",
+        color: "var(--wg-text)",
+        transition: "color 0.25s ease",
     },
 
     title: {
@@ -153,14 +155,16 @@ const styles = {
         margin: "14px 0 6px",
         fontSize: "clamp(1.7rem, 4vw, 2.7rem)",
         lineHeight: 1.1,
-        color: "#f5f6fa",
+        color: "var(--wg-title)",
         wordBreak: "break-word",
+        transition: "color 0.25s ease",
     },
 
     gameId: {
-        color: "#a4b0be",
+        color: "var(--wg-muted)",
         fontSize: "0.75em",
         fontWeight: 800,
+        transition: "color 0.25s ease",
     },
 
     backWrapper: {
@@ -171,8 +175,9 @@ const styles = {
     backLink: {
         textDecoration: "none",
         fontWeight: "bold",
-        color: "#8e44ad",
+        color: "var(--wg-link)",
         fontSize: "1rem",
+        transition: "color 0.25s ease",
     },
 
     content: {
@@ -185,12 +190,13 @@ const styles = {
     compactPanel: {
         width: "100%",
         maxWidth: "760px",
-        background: "#1e2a32",
-        border: "1px solid rgba(255, 255, 255, 0.12)",
+        background: "var(--wg-panel-bg)",
+        border: "1px solid var(--wg-panel-border)",
         borderRadius: "14px",
         padding: "10px",
-        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.24)",
+        boxShadow: "var(--wg-panel-shadow)",
         boxSizing: "border-box",
+        transition: "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
     },
 
     infoRow: {
@@ -201,8 +207,8 @@ const styles = {
     },
 
     infoPill: {
-        background: "rgba(15, 23, 30, 0.72)",
-        border: "1px solid rgba(255, 255, 255, 0.08)",
+        background: "var(--wg-pill-bg)",
+        border: "1px solid var(--wg-pill-border)",
         borderRadius: "10px",
         padding: "8px 10px",
         minHeight: "48px",
@@ -211,77 +217,86 @@ const styles = {
         flexDirection: "column",
         justifyContent: "center",
         overflow: "hidden",
+        transition: "background 0.25s ease, border-color 0.25s ease",
     },
 
     infoLabel: {
-        color: "#a4b0be",
+        color: "var(--wg-label)",
         fontSize: "0.68rem",
         fontWeight: 900,
         textTransform: "uppercase",
         letterSpacing: "0.04em",
         marginBottom: "3px",
+        transition: "color 0.25s ease",
     },
 
     infoValue: {
-        color: "#ffffff",
+        color: "var(--wg-value)",
         fontSize: "0.95rem",
         fontWeight: 900,
         lineHeight: 1.1,
         overflowWrap: "anywhere",
+        transition: "color 0.25s ease",
     },
 
     accentValue: {
-        color: "#00cec9",
+        color: "var(--wg-accent)",
     },
 
     infoSubValue: {
         marginTop: "2px",
-        color: "#6c7a89",
+        color: "var(--wg-subvalue)",
         fontSize: "0.76rem",
         fontWeight: 800,
         overflowWrap: "anywhere",
+        transition: "color 0.25s ease",
     },
 
     winnerCompact: {
         marginTop: "8px",
         padding: "9px 12px",
         borderRadius: "10px",
-        background: "linear-gradient(135deg, rgba(0, 206, 201, 0.18), rgba(142, 68, 173, 0.18))",
-        border: "1px solid rgba(0, 206, 201, 0.32)",
+        background: "var(--wg-winner-bg)",
+        border: "1px solid var(--wg-winner-border)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: "8px",
         flexWrap: "wrap",
         textAlign: "center",
+        transition: "background 0.25s ease, border-color 0.25s ease",
     },
 
     winnerLabel: {
-        color: "#a4b0be",
+        color: "var(--wg-winner-label)",
         fontSize: "0.75rem",
         fontWeight: 900,
         textTransform: "uppercase",
         letterSpacing: "0.05em",
+        transition: "color 0.25s ease",
     },
 
     winnerName: {
-        color: "#ffffff",
+        color: "var(--wg-winner-name)",
         fontSize: "1.1rem",
         fontWeight: 950,
         overflowWrap: "anywhere",
+        transition: "color 0.25s ease",
     },
 
     debugDetails: {
         marginTop: "6px",
-        color: "#a4b0be",
+        color: "var(--wg-muted)",
         fontSize: "0.78rem",
+        transition: "color 0.25s ease",
     },
 
     debugSummary: {
         cursor: "pointer",
         fontWeight: 800,
-        color: "#a4b0be",
+        color: "var(--wg-muted)",
         outline: "none",
+        transition: "color 0.25s ease",
     },
 
     debugGrid: {
@@ -292,10 +307,13 @@ const styles = {
     },
 
     debugItem: {
-        background: "rgba(0, 0, 0, 0.18)",
+        background: "var(--wg-debug-bg)",
+        border: "1px solid var(--wg-debug-border)",
         borderRadius: "8px",
         padding: "6px 8px",
         overflowWrap: "anywhere",
+        color: "var(--wg-debug-text)",
+        transition: "background 0.25s ease, border-color 0.25s ease, color 0.25s ease",
     },
 
     boardOuter: {
@@ -359,12 +377,67 @@ export function WatchGamePage() {
     const winnerName = data ? getWinnerName(data) : "";
 
     return (
-        <div className="watch-game-page-compact" style={styles.page}>
+        <div className="watch-game-page-compact watch-game-page-theme" style={styles.page}>
             <style>
                 {`
+                    .watch-game-page-theme {
+                        --wg-title: #0f172a;
+                        --wg-text: #0f172a;
+                        --wg-muted: #64748b;
+                        --wg-link: #7c3aed;
+
+                        --wg-panel-bg: #ffffff;
+                        --wg-panel-border: rgba(15, 23, 42, 0.12);
+                        --wg-panel-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+
+                        --wg-pill-bg: #f8fafc;
+                        --wg-pill-border: rgba(15, 23, 42, 0.10);
+                        --wg-label: #64748b;
+                        --wg-value: #0f172a;
+                        --wg-subvalue: #64748b;
+                        --wg-accent: #0891b2;
+
+                        --wg-winner-bg: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(34, 197, 94, 0.14));
+                        --wg-winner-border: rgba(14, 165, 233, 0.35);
+                        --wg-winner-label: #475569;
+                        --wg-winner-name: #0f172a;
+
+                        --wg-debug-bg: rgba(15, 23, 42, 0.04);
+                        --wg-debug-border: rgba(15, 23, 42, 0.08);
+                        --wg-debug-text: #334155;
+                    }
+
+                    .dark-mode .watch-game-page-theme {
+                        --wg-title: #f5f6fa;
+                        --wg-text: #f5f6fa;
+                        --wg-muted: #a4b0be;
+                        --wg-link: #a855f7;
+
+                        --wg-panel-bg: #1e2a32;
+                        --wg-panel-border: rgba(255, 255, 255, 0.12);
+                        --wg-panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+
+                        --wg-pill-bg: rgba(15, 23, 30, 0.72);
+                        --wg-pill-border: rgba(255, 255, 255, 0.08);
+                        --wg-label: #a4b0be;
+                        --wg-value: #ffffff;
+                        --wg-subvalue: #6c7a89;
+                        --wg-accent: #00cec9;
+
+                        --wg-winner-bg: linear-gradient(135deg, rgba(0, 206, 201, 0.18), rgba(142, 68, 173, 0.18));
+                        --wg-winner-border: rgba(0, 206, 201, 0.32);
+                        --wg-winner-label: #a4b0be;
+                        --wg-winner-name: #ffffff;
+
+                        --wg-debug-bg: rgba(0, 0, 0, 0.18);
+                        --wg-debug-border: rgba(255, 255, 255, 0.04);
+                        --wg-debug-text: #dfe6e9;
+                    }
+
                     .watch-game-page-compact .watch-game-board-large .board-container {
                         padding: 18px;
                         border-radius: 16px;
+                        transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
                     }
 
                     .watch-game-page-compact .watch-game-board-large .board-grid {
