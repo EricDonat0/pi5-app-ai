@@ -8,7 +8,7 @@ export const PLAYERS = [
     },
     {
         id: 134,
-        name: "PalermaBot V2 (Turbo VTEC)",
+        name: "PalermaBot V2 (Lookahead)",
         token: import.meta.env.VITE_API_TOKEN_PALERMA_LOOKAHEAD_V2_TURBO_VTEC
     },
     {
