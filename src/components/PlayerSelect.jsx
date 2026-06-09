@@ -8,13 +8,13 @@ export const PLAYERS = [
     },
     {
         id: 134,
-        name: "PalermaBot V2 (Turbo VTEC)",
+        name: "PalermaBot V2 (Lookahead)",
         token: import.meta.env.VITE_API_TOKEN_PALERMA_LOOKAHEAD_V2_TURBO_VTEC
     },
     {
         id: 138,
         name: "PalermaBot V3 (Negamax Alpha-Beta)",
-        token: import.meta.env.VITE_API_TOKEN_PALERMA_V3_NEGAMAX_ALPHA_BETA
+        token: import.meta.env.VITE_API_TOKEN_ERIGUEI
     }
 ];
 
