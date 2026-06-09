@@ -1,17 +1,29 @@
 import { api } from "../services/api";
 
 export const PLAYERS = [
-    // Atualizado para o ID 131
-    { id: 131, name: "PalermaBot (Arena API)", token: import.meta.env.VITE_API_TOKEN_PALERMABOT },
-    { id: 134, name: "Palerma_Lookahead_V2_Turbo_VTEC", token: import.meta.env.VITE_API_TOKEN_PALERMA_LOOKAHEAD_V2_TURBO_VTEC }
+    {
+        id: 131,
+        name: "PalermaBot V1 (Heurística Gulosa)",
+        token: import.meta.env.VITE_API_TOKEN_PALERMABOT
+    },
+    {
+        id: 134,
+        name: "PalermaBot V2 (Turbo VTEC)",
+        token: import.meta.env.VITE_API_TOKEN_PALERMA_LOOKAHEAD_V2_TURBO_VTEC
+    },
+    {
+        id: 138,
+        name: "PalermaBot V3 (Negamax Alpha-Beta)",
+        token: import.meta.env.VITE_API_TOKEN_PALERMA_V3_NEGAMAX_ALPHA_BETA
+    }
 ];
 
 export function PlayerSelect({ value, onChange, label, variant = "arena" }) {
-    
+
     function handleChange(event) {
         const val = event.target.value;
         if (!val) return;
-        
+
         const newId = parseInt(val);
         const playerEncontrado = PLAYERS.find(p => p.id === newId);
         if (playerEncontrado) {
