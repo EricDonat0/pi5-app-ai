@@ -1,0 +1,236 @@
+.watch-list-page-v3 {
+    --wl-card-bg: #ffffff;
+    --wl-soft-bg: #f8fafc;
+    --wl-input-bg: #ffffff;
+    --wl-border: rgba(15, 23, 42, 0.12);
+    --wl-text: #0f172a;
+    --wl-muted: #64748b;
+    --wl-accent: #00b894;
+    --wl-accent-2: #00cec9;
+    --wl-shadow: 0 14px 34px rgba(15, 23, 42, 0.10);
+
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 34px 18px 48px;
+    box-sizing: border-box;
+    color: var(--wl-text);
+}
+
+.dark-mode .watch-list-page-v3,
+body.dark-mode .watch-list-page-v3 {
+    --wl-card-bg: #1f2a32;
+    --wl-soft-bg: #121b22;
+    --wl-input-bg: #101820;
+    --wl-border: rgba(255, 255, 255, 0.10);
+    --wl-text: #f8fafc;
+    --wl-muted: #a4b0be;
+    --wl-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.wl-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.wl-title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--wl-text);
+}
+
+.wl-subtitle {
+    max-width: 560px;
+    margin: 8px auto 0;
+    color: var(--wl-muted);
+    font-size: 0.98rem;
+    line-height: 1.45;
+}
+
+.wl-panel {
+    background: var(--wl-card-bg);
+    border: 1px solid var(--wl-border);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--wl-shadow);
+    margin-bottom: 18px;
+}
+
+.wl-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.wl-field {
+    text-align: left;
+}
+
+.wl-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--wl-text);
+    font-size: 0.84rem;
+    font-weight: 900;
+}
+
+.wl-select {
+    width: 100%;
+    height: 54px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid var(--wl-border);
+    background: var(--wl-input-bg);
+    color: var(--wl-text);
+    padding: 0 16px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    outline: none;
+}
+
+.wl-select:focus {
+    border-color: var(--wl-accent-2);
+    box-shadow: 0 0 0 3px rgba(0, 206, 201, 0.16);
+}
+
+.wl-helper {
+    margin: 7px 0 0;
+    color: var(--wl-muted);
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.wl-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.wl-button {
+    width: 100%;
+    min-height: 46px;
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    font-size: 0.86rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.wl-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.wl-button-secondary {
+    background: #3d4b52;
+    color: #ffffff;
+}
+
+.wl-button-primary {
+    background: linear-gradient(135deg, var(--wl-accent), var(--wl-accent-2));
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(0, 206, 201, 0.22);
+}
+
+.wl-status {
+    text-align: center;
+    color: var(--wl-muted);
+    font-weight: 800;
+    margin: 16px 0;
+}
+
+.wl-games {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+@media (max-width: 640px) {
+    .watch-list-page-v3 {
+        max-width: 430px;
+        padding: 18px 10px 32px;
+    }
+
+    .wl-header {
+        margin-bottom: 13px;
+    }
+
+    .wl-title {
+        font-size: 1.75rem;
+        letter-spacing: -0.03em;
+    }
+
+    .wl-subtitle {
+        max-width: 310px;
+        font-size: 0.8rem;
+        line-height: 1.35;
+    }
+
+    .wl-panel {
+        padding: 12px;
+        border-radius: 15px;
+        margin-bottom: 12px;
+    }
+
+    .wl-form-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .wl-label {
+        font-size: 0.76rem;
+        margin-bottom: 5px;
+    }
+
+    .wl-select {
+        height: 41px;
+        border-radius: 9px;
+        padding: 0 9px;
+        font-size: 0.78rem;
+    }
+
+    .wl-helper {
+        font-size: 0.68rem;
+        margin-top: 5px;
+    }
+
+    .wl-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .wl-button {
+        min-height: 41px;
+        border-radius: 10px;
+        font-size: 0.74rem;
+        padding: 9px 12px;
+    }
+
+    .wl-games {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .watch-list-page-v3 {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .wl-title {
+        font-size: 1.55rem;
+    }
+
+    .wl-subtitle {
+        font-size: 0.74rem;
+    }
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { GameCard } from "../components/GameCard";
 import { api } from "../services/api";
-import { PlayerSelect, PLAYERS } from "../components/PlayerSelect";
+import { PLAYERS } from "../components/PlayerSelect";
+import "../styles/WatchListPage.css";
 
 function getErrorDetail(err) {
     const detail = err?.detail ?? err?.data?.detail ?? err?.data ?? err?.message ?? err;
@@ -18,6 +19,17 @@ function getErrorDetail(err) {
     }
 
     return String(detail || "Erro desconhecido");
+}
+
+function getLocalPlayerName(player, fallback) {
+    return (
+        player?.ai_player_name ||
+        player?.group_name ||
+        player?.name ||
+        player?.nome ||
+        player?.label ||
+        fallback
+    );
 }
 
 export function WatchListPage() {
@@ -94,75 +106,99 @@ export function WatchListPage() {
     }, []);
 
     return (
-        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px 20px", textAlign: "center" }}>
-            <h1 style={{ marginBottom: "20px" }}>Selecione a Partida</h1>
+        <main className="watch-list-page-v3">
+            <header className="wl-header">
+                <h1 className="wl-title">Selecione a Partida</h1>
 
-            <p style={{ color: "#636e72", marginBottom: "30px" }}>
-                Lista das últimas partidas geradas no servidor.
-            </p>
-
-            <PlayerSelect
-                value={selectedPlayerId}
-                onChange={setSelectedPlayerId}
-                label="Jogar como:"
-                variant="watchlist"
-            />
-
-            <div style={{ margin: "20px 0 30px 0", textAlign: "left" }}>
-                <label className="player-select-label" style={{ display: "block", marginBottom: "10px" }}>
-                    Slot contra Random Bot:
-                </label>
-
-                <select
-                    className="player-select-dropdown"
-                    value={selectedTeamSlot}
-                    onChange={(e) => setSelectedTeamSlot(e.target.value)}
-                    style={{ width: "100%", boxSizing: "border-box" }}
-                >
-                    <option value="1">Slot 1 / Turing / Primeiro jogador</option>
-                    <option value="2">Slot 2 / Lovelace / Segundo jogador</option>
-                </select>
-
-                <p style={{ color: "#636e72", fontSize: "0.9rem", marginTop: "8px" }}>
-                    Selecione qual posição deseja jogar.
+                <p className="wl-subtitle">
+                    Acompanhe as partidas recentes e inicie novos testes contra o Random Bot.
                 </p>
-            </div>
+            </header>
 
-            <div className="list-controls">
-                <button
-                    onClick={fetchGamesList}
-                    className="secondary-button"
-                    disabled={loading}
-                >
-                    {loading ? "Buscando..." : "Atualizar Lista"}
-                </button>
+            <section className="wl-panel">
+                <div className="wl-form-grid">
+                    <div className="wl-field">
+                        <label className="wl-label" htmlFor="watch-player-select">
+                            Jogar como
+                        </label>
 
-                <button
-                    onClick={createNewGame}
-                    className="cta-button"
-                    disabled={creating}
-                >
-                    {creating ? "Iniciando..." : "Nova Partida"}
-                </button>
-            </div>
+                        <select
+                            id="watch-player-select"
+                            className="wl-select"
+                            value={selectedPlayerId}
+                            onChange={(e) => setSelectedPlayerId(e.target.value)}
+                        >
+                            <option value="">Selecione um jogador</option>
 
-            {loading && games.length === 0 && <p>A carregar partidas...</p>}
+                            {PLAYERS.map((player) => (
+                                <option key={player.id} value={player.id}>
+                                    {getLocalPlayerName(player, `Jogador ${player.id}`)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="wl-field">
+                        <label className="wl-label" htmlFor="watch-slot-select">
+                            Slot contra Random Bot
+                        </label>
+
+                        <select
+                            id="watch-slot-select"
+                            className="wl-select"
+                            value={selectedTeamSlot}
+                            onChange={(e) => setSelectedTeamSlot(e.target.value)}
+                        >
+                            <option value="1">Slot 1 / Turing</option>
+                            <option value="2">Slot 2 / Lovelace</option>
+                        </select>
+
+                        <p className="wl-helper">
+                            Escolha a posição inicial do seu jogador na partida.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="wl-actions">
+                    <button
+                        onClick={fetchGamesList}
+                        className="wl-button wl-button-secondary"
+                        disabled={loading}
+                        type="button"
+                    >
+                        {loading ? "Buscando..." : "Atualizar lista"}
+                    </button>
+
+                    <button
+                        onClick={createNewGame}
+                        className="wl-button wl-button-primary"
+                        disabled={creating}
+                        type="button"
+                    >
+                        {creating ? "Iniciando..." : "Nova partida"}
+                    </button>
+                </div>
+            </section>
+
+            {loading && games.length === 0 && (
+                <p className="wl-status">A carregar partidas...</p>
+            )}
 
             {error && (
-                <p className="error-text">
+                <p className="wl-status">
                     Erro ao carregar as partidas. Selecione um jogador e atualize a lista.
                 </p>
             )}
 
             {!loading && !error && games.length === 0 && (
-                <p>Nenhuma partida encontrada.</p>
+                <p className="wl-status">Nenhuma partida encontrada.</p>
             )}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <section className="wl-games">
                 {games.map((game) => (
                     <GameCard key={game.id} game={game} />
                 ))}
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }
